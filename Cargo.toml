@@ -1,0 +1,13 @@
+[package]
+name = "aios-sdk"
+version = "0.1.0"
+edition = "2024"
+authors = ["Prosper Boateng"]
+description = "Official SDK for building AIOS agents"
+license = "MIT"
+repository = "https://github.com/AI-operatingsystem293/aios-sdk"
+
+[lib]
+name = "aios_sdk"
+
+[dependencies]

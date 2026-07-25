@@ -1,0 +1,1 @@
+pub const AIOS_PLUGIN_API_VERSION: u32 = 1;
