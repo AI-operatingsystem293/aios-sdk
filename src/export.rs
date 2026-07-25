@@ -1,7 +1,12 @@
 use crate::agent::Agent;
 
-/// Every AIOS plugin exports exactly one function named
-/// `create_agent` that returns the plugin implementation.
-pub trait AgentFactory {
-    fn create() -> Box<dyn Agent>;
+#[macro_export]
+macro_rules! export_agent_plugin {
+    ($agent:ty) => {
+        #[unsafe(no_mangle)]
+        pub extern "C" fn create_plugin() -> *mut dyn Agent {
+            let agent = <$agent>::new();
+            Box::into_raw(Box::new(agent))
+        }
+    };
 }
