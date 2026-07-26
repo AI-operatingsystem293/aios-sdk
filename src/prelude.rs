@@ -1,5 +1,5 @@
 pub use crate::agent::Agent;
-pub use crate::context::Context;
-pub use crate::response::Response;
-pub use crate::plugin::AIOS_PLUGIN_API_VERSION;
-pub use crate::export_agent_plugin;
+pub use crate::context::AgentContext;
+pub use crate::manifest::AgentManifest;
+pub use crate::request::AgentRequest;
+pub use crate::response::AgentResponse;

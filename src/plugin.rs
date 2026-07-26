@@ -1,1 +1,8 @@
-pub const AIOS_PLUGIN_API_VERSION: u32 = 1;
+use crate::agent::Agent;
+use crate::manifest::AgentManifest;
+
+pub trait AgentPlugin {
+    fn manifest(&self) -> AgentManifest;
+
+    fn create(&self) -> Box<dyn Agent>;
+}

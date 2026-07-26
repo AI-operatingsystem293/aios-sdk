@@ -1,23 +1,31 @@
 use crate::{
-    context::Context,
-    response::Response,
+    context::AgentContext,
+    manifest::AgentManifest,
+    request::AgentRequest,
+    response::AgentResponse,
 };
-
 pub trait Agent: Send + Sync {
-    fn name(&self) -> &'static str;
+    /// Metadata about this agent
+    fn manifest(&self) -> AgentManifest;
 
-    fn version(&self) -> &'static str;
+    /// Called once when the agent starts
+    fn initialize(
+        &mut self,
+        _context: &AgentContext,
+    ) -> Result<(), String> {
+        Ok(())
+    }
 
-    fn author(&self) -> &'static str;
-
-    fn description(&self) -> &'static str;
-
-    fn capabilities(&self) -> Vec<&'static str>;
-
+    /// Execute one request
     fn execute(
-        &self,
-        capability: &str,
-        input: &str,
-        context: &Context,
-    ) -> Response;
+        &mut self,
+        request: AgentRequest,
+    ) -> AgentResponse;
+
+    /// Called before shutdown
+    fn shutdown(
+        &mut self,
+    ) -> Result<(), String> {
+        Ok(())
+    }
 }

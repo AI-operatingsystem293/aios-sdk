@@ -1,6 +1,13 @@
 pub mod agent;
 pub mod context;
+pub mod error;
+pub mod manifest;
+pub mod permissions;
+pub mod request;
 pub mod response;
-pub mod export;
+pub mod result;
+pub mod version;
 pub mod plugin;
+pub mod export;
+
 pub mod prelude;

@@ -1,20 +1,33 @@
-pub struct Response {
+#[derive(Clone, Debug)]
+pub struct AgentResponse {
+    pub task_id: u64,
     pub success: bool,
     pub output: String,
 }
 
-impl Response {
-    pub fn success(output: impl Into<String>) -> Self {
+impl AgentResponse {
+
+    pub fn success(
+        task_id: u64,
+        output: &str,
+    ) -> Self {
+
         Self {
+            task_id,
             success: true,
-            output: output.into(),
+            output: output.to_string(),
         }
     }
 
-    pub fn error(output: impl Into<String>) -> Self {
+    pub fn error(
+        task_id: u64,
+        message: &str,
+    ) -> Self {
+
         Self {
+            task_id,
             success: false,
-            output: output.into(),
+            output: message.to_string(),
         }
     }
 }
