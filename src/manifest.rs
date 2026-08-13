@@ -5,6 +5,7 @@ pub struct AgentManifest {
     pub author: String,
     pub description: String,
     pub capabilities: Vec<String>,
+    pub keywords: Vec<String>,
 }
 
 impl AgentManifest {
@@ -15,6 +16,7 @@ impl AgentManifest {
             author: String::new(),
             description: String::new(),
             capabilities: Vec::new(),
+            keywords: Vec::new(),
         }
     }
 
@@ -40,6 +42,15 @@ impl AgentManifest {
 
     pub fn capability(mut self, capability: &str) -> Self {
         self.capabilities.push(capability.to_string());
+        self
+    }
+
+    pub fn keywords<I, S>(mut self, keywords: I) -> Self
+    where
+        I: IntoIterator<Item = S>,
+        S: Into<String>,
+    {
+        self.keywords = keywords.into_iter().map(Into::into).collect();
         self
     }
 }
